@@ -10,33 +10,24 @@
 
         <Button
             android:id="@+id/btn_record_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_delete"
+            style="@style/ButtonRecord.DeleteBackground"
             app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
-            android:textColor="@android:color/white"
             android:text="@string/btn_record_delete"/>
 
         <Button
             android:id="@+id/btn_record_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_record"
+            style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintBottom_toBottomOf="@id/guideline_record_margin_bottom"
-            android:textColor="@android:color/white"
             android:text="@string/btn_record_stop"/>
 
         <Button
             android:id="@+id/btn_record_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_record"
+            style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintStart_toStartOf="@+id/guideline_record_margin_start"
             app:layout_constraintBottom_toBottomOf="@+id/guideline_record_margin_bottom"
-            android:textColor="@android:color/white"
             android:text="@string/btn_record_start"/>
 
         <androidx.constraintlayout.widget.Guideline

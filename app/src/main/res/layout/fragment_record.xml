@@ -8,6 +8,23 @@
         android:layout_height="match_parent"
         tools:context=".RecordFragment">
 
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/btn_record_delete"
+            android:layout_marginTop="@dimen/fragment_vertical_margin"
+            android:layout_marginBottom="@dimen/fragment_vertical_margin">
+
+            <TextView
+                android:id="@+id/tv_record_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Charging Record"/>
+
+        </ScrollView>
+
         <Button
             android:id="@+id/btn_record_delete"
             style="@style/ButtonRecord.DeleteBackground"

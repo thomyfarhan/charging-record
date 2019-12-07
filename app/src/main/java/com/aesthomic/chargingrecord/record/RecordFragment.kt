@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
@@ -38,6 +39,12 @@ class RecordFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        viewModel.eventStart.observe(this, Observer { start ->
+            if (start) {
+                viewModel.onStartCharging(getBatteryLevel())
+            }
+        })
 
         return binding.root
     }

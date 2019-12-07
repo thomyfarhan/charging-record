@@ -2,6 +2,7 @@ package com.aesthomic.chargingrecord.record
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aesthomic.chargingrecord.database.Record
 import com.aesthomic.chargingrecord.database.RecordDao
@@ -30,7 +31,12 @@ class RecordViewModel(
 
     private var currentRecord = MutableLiveData<Record>()
 
+    private val _eventStart = MutableLiveData<Boolean>()
+    val eventStart: LiveData<Boolean>
+        get() = _eventStart
+
     init {
+        _eventStart.value = false
         initializeCurrentRecord()
     }
 
@@ -56,6 +62,28 @@ class RecordViewModel(
             }
             record
         }
+    }
+
+    private suspend fun insert(record: Record) {
+        withContext(Dispatchers.IO) {
+            database.insert(record)
+        }
+    }
+
+    fun onStartCharging(level: Int) {
+        uiScope.launch {
+            val record = Record(
+                startTimeMilli = System.currentTimeMillis(),
+                startBatteryLevel = level
+            )
+            insert(record)
+            currentRecord.value = getRecordFromDatabase()
+        }
+        _eventStart.value = false
+    }
+
+    fun onEventStart() {
+        _eventStart.value = true
     }
 
     override fun onCleared() {

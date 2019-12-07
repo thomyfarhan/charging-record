@@ -1,6 +1,10 @@
 package com.aesthomic.chargingrecord.record
 
 
+import android.app.Application
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.BatteryManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +19,7 @@ import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
 class RecordFragment : Fragment() {
 
     private lateinit var binding: FragmentRecordBinding
+    private lateinit var application: Application
     private lateinit var viewModel: RecordViewModel
 
     override fun onCreateView(
@@ -24,7 +29,7 @@ class RecordFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_record, container, false)
 
-        val application = requireNotNull(this.activity).application
+        application = requireNotNull(this.activity).application
         val database = ChargingRecordDatabase.getInstance(application).recordDao
 
         val viewModelFactory = RecordViewModelFactory(database, application)
@@ -35,6 +40,13 @@ class RecordFragment : Fragment() {
         binding.viewModel = viewModel
 
         return binding.root
+    }
+
+    fun getBatteryLevel(): Int {
+        val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+        val batteryStatus = application.registerReceiver(null, ifilter)
+
+        return batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
     }
 
 

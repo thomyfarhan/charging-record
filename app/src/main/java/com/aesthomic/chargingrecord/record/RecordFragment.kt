@@ -1,4 +1,4 @@
-package com.aesthomic.chargingrecord
+package com.aesthomic.chargingrecord.record
 
 
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
 
 class RecordFragment : Fragment() {

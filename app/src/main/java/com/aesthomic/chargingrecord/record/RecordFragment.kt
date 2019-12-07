@@ -31,6 +31,9 @@ class RecordFragment : Fragment() {
         viewModel = ViewModelProviders.of(
             this, viewModelFactory).get(RecordViewModel::class.java)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         return binding.root
     }
 

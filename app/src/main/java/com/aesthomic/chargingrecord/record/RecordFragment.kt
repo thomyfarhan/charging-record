@@ -55,10 +55,13 @@ class RecordFragment : Fragment() {
 
         viewModel.navigateToPhoneHeat.observe(this, Observer { record ->
             record?.let {
-                this.findNavController().navigate(
-                    RecordFragmentDirections
-                        .actionRecordDestinationToPhoneHeatDestination(it.id))
-                viewModel.onNavigatingDone()
+                if (this.findNavController().currentDestination?.id ==
+                        R.id.record_destination) {
+                    this.findNavController().navigate(
+                        RecordFragmentDirections
+                            .actionRecordDestinationToPhoneHeatDestination(it.id))
+                    viewModel.onNavigatingDone()
+                }
             }
         })
 

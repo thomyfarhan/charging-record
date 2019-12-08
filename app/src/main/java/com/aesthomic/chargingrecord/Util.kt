@@ -29,8 +29,8 @@ fun formatRecords(records: List<Record>, resources: Resources): Spanned {
             if (it.endTimeMilli != it.startTimeMilli) {
                 append(resources.getString(R.string.list_end_time))
                 append("\t${convertLongToDateString(it.endTimeMilli)}<br>")
-                append(resources.getString(R.string.list_battery_level))
-                append("\t${it.startBatteryLevel - it.endBatteryLevel}<br>")
+                append(resources.getString(R.string.list_total_charge))
+                append("\t${it.endBatteryLevel - it.startBatteryLevel}<br>")
                 append(resources.getString(R.string.list_phone_heat))
                 append("\t${convertNumericHeatToString(it.phoneHeat, resources)}<br>")
                 append(resources.getString(R.string.list_hours))

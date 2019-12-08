@@ -5,12 +5,12 @@
     <string name="btn_record_delete">Delete All</string>
 
     <!--    Output to TextView styled with HTML-->
-    <string name="list_title"><![CDATA[<h3>YOUR SLEEP DATA</h3>]]></string>
+    <string name="list_title"><![CDATA[<h3>YOUR CHARGING DATA</h3>]]></string>
     <string name="list_start_time"><![CDATA[<b>Start:</b>]]></string>
     <string name="list_end_time"><![CDATA[<b>End:</b>]]></string>
     <string name="list_phone_heat"><![CDATA[<b>Phone Heat:</b>]]></string>
     <string name="list_hours"><![CDATA[<b>Hours: Minutes: Seconds</b>]]></string>
-    <string name="list_battery_level"><![CDATA[<b>Battery Level:</b>]]></string>
+    <string name="list_total_charge"><![CDATA[<b>Total Charge:</b>]]></string>
 
     <!--    Record phone heat String-->
     <string name="tv_heat_title">How is the heat of your phone?</string>

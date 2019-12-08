@@ -45,8 +45,8 @@ class PhoneHeatFragment : Fragment() {
                         PhoneHeatFragmentDirections
                             .actionPhoneHeatDestinationToRecordDestination())
                 }
+                viewModel.onNavigatingDone()
             }
-            viewModel.onNavigatingDone()
         })
 
         return binding.root

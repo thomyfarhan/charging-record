@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
@@ -34,6 +36,18 @@ class PhoneHeatFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        viewModel.navigateToRecord.observe(this, Observer { navigate ->
+            if (navigate) {
+                if (this.findNavController().currentDestination?.id ==
+                    R.id.phone_heat_destination) {
+                    this.findNavController().navigate(
+                        PhoneHeatFragmentDirections
+                            .actionPhoneHeatDestinationToRecordDestination())
+                }
+            }
+            viewModel.onNavigatingDone()
+        })
 
         return binding.root
     }

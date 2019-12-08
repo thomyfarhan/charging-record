@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
+            android:enabled="@{viewModel.deleteButtonVisibility}"
             android:onClick="@{() -> viewModel.onClear()}"
             android:text="@string/btn_record_delete"/>
 
@@ -46,6 +47,7 @@
             style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintBottom_toBottomOf="@id/guideline_record_margin_bottom"
+            android:enabled="@{viewModel.stopButtonVisibility}"
             android:onClick="@{() -> viewModel.onEventStop()}"
             android:text="@string/btn_record_stop"/>
 
@@ -54,6 +56,7 @@
             style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintStart_toStartOf="@+id/guideline_record_margin_start"
             app:layout_constraintBottom_toBottomOf="@+id/guideline_record_margin_bottom"
+            android:enabled="@{viewModel.startButtonVisibility}"
             android:onClick="@{() -> viewModel.onEventStart()}"
             android:text="@string/btn_record_start"/>
 

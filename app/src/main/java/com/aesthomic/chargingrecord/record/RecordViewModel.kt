@@ -71,6 +71,18 @@ class RecordViewModel(
         formatRecords(records, application.resources)
     }
 
+    val startButtonVisibility = Transformations.map(currentRecord) {
+        it == null
+    }
+
+    val stopButtonVisibility = Transformations.map(currentRecord) {
+        it != null
+    }
+
+    val deleteButtonVisibility = Transformations.map(records) {
+        it.isNotEmpty()
+    }
+
     init {
         _eventStart.value = false
         _eventStop.value = false

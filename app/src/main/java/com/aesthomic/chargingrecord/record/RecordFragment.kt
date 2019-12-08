@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
@@ -49,6 +50,15 @@ class RecordFragment : Fragment() {
         viewModel.eventStop.observe(this, Observer { stop ->
             if (stop) {
                 viewModel.onStopCharging(getBatteryLevel())
+            }
+        })
+
+        viewModel.navigateToPhoneHeat.observe(this, Observer { record ->
+            record?.let {
+                this.findNavController().navigate(
+                    RecordFragmentDirections
+                        .actionRecordDestinationToPhoneHeatDestination(it.id))
+                viewModel.onNavigatingDone()
             }
         })
 

@@ -52,6 +52,10 @@ class RecordViewModel(
     val eventStop: LiveData<Boolean>
         get() = _eventStop
 
+    private val _navigateToPhoneHeat = MutableLiveData<Record?>()
+    val navigateToPhoneHeat: LiveData<Record?>
+        get() = _navigateToPhoneHeat
+
     /**
      * get all record rows from database and put it on variable
      * We do not need the coroutine to fetch data from database
@@ -70,6 +74,7 @@ class RecordViewModel(
     init {
         _eventStart.value = false
         _eventStop.value = false
+        _navigateToPhoneHeat.value = null
         initializeCurrentRecord()
     }
 
@@ -159,8 +164,10 @@ class RecordViewModel(
             oldRecord.endTimeMilli = System.currentTimeMillis()
             oldRecord.endBatteryLevel = level
             update(oldRecord)
+
+            _eventStop.value = false
+            _navigateToPhoneHeat.value = oldRecord
         }
-        _eventStop.value = false
     }
 
     /**
@@ -186,6 +193,10 @@ class RecordViewModel(
      */
     fun onEventStop() {
         _eventStop.value = true
+    }
+
+    fun onNavigatingDone() {
+        _navigateToPhoneHeat.value = null
     }
 
     override fun onCleared() {

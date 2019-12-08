@@ -52,6 +52,10 @@ class RecordViewModel(
     val eventStop: LiveData<Boolean>
         get() = _eventStop
 
+    private val _eventSnackBar = MutableLiveData<Boolean>()
+    val eventSnackBar: LiveData<Boolean>
+        get() = _eventSnackBar
+
     private val _navigateToPhoneHeat = MutableLiveData<Record?>()
     val navigateToPhoneHeat: LiveData<Record?>
         get() = _navigateToPhoneHeat
@@ -190,6 +194,7 @@ class RecordViewModel(
         uiScope.launch {
             clear()
             currentRecord.value = null
+            _eventSnackBar.value = true
         }
     }
 
@@ -209,6 +214,10 @@ class RecordViewModel(
 
     fun onNavigatingDone() {
         _navigateToPhoneHeat.value = null
+    }
+
+    fun onSnackbarDone() {
+        _eventSnackBar.value = false
     }
 
     override fun onCleared() {

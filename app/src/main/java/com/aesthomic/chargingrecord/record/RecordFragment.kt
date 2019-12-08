@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
+import com.google.android.material.snackbar.Snackbar
 
 class RecordFragment : Fragment() {
 
@@ -62,6 +63,16 @@ class RecordFragment : Fragment() {
                             .actionRecordDestinationToPhoneHeatDestination(it.id))
                     viewModel.onNavigatingDone()
                 }
+            }
+        })
+
+        viewModel.eventSnackBar.observe(this, Observer {
+            if (it) {
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.delete_snackbar),
+                    Snackbar.LENGTH_SHORT).show()
+                viewModel.onSnackbarDone()
             }
         })
 

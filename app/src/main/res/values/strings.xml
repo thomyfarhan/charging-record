@@ -3,4 +3,21 @@
     <string name="btn_record_start">Start</string>
     <string name="btn_record_stop">Stop</string>
     <string name="btn_record_delete">Delete All</string>
+
+    <!--    Output to TextView styled with HTML-->
+    <string name="list_title"><![CDATA[<h3>YOUR SLEEP DATA</h3>]]></string>
+    <string name="list_start_time"><![CDATA[<b>Start:</b>]]></string>
+    <string name="list_end_time"><![CDATA[<b>End:</b>]]></string>
+    <string name="list_phone_heat"><![CDATA[<b>Phone Heat:</b>]]></string>
+    <string name="list_hours"><![CDATA[<b>Hours: Minutes: Seconds</b>]]></string>
+    <string name="list_battery_level"><![CDATA[<b>Battery Level:</b>]]></string>
+
+    <!--    Record phone heat String-->
+    <string name="zero_very_hot">Very Hot</string>
+    <string name="one_hot">Hot</string>
+    <string name="two_so_so">So-so</string>
+    <string name="three_ok">OK</string>
+    <string name="four_stable">Stable</string>
+    <string name="five_very_stable">Very Stable</string>
+
 </resources>

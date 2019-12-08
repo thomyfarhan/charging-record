@@ -27,6 +27,7 @@
                 android:id="@+id/tv_record_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.recordsString}"
                 tools:text="Charging Record"/>
 
         </ScrollView>

@@ -45,6 +45,7 @@
             style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintBottom_toBottomOf="@id/guideline_record_margin_bottom"
+            android:onClick="@{() -> viewModel.onEventStop()}"
             android:text="@string/btn_record_stop"/>
 
         <Button

@@ -38,11 +38,19 @@ class RecordViewModel(
 
     /**
      * This variable gives a state whether the start button
-     * has pressed or not
+     * has been pressed or not
      */
     private val _eventStart = MutableLiveData<Boolean>()
     val eventStart: LiveData<Boolean>
         get() = _eventStart
+
+    /**
+     * This variable gives a state whether the stop button
+     * has been pressed or not
+     */
+    private val _eventStop = MutableLiveData<Boolean>()
+    val eventStop: LiveData<Boolean>
+        get() = _eventStop
 
     /**
      * get all record rows from database and put it on variable
@@ -61,6 +69,7 @@ class RecordViewModel(
 
     init {
         _eventStart.value = false
+        _eventStop.value = false
         initializeCurrentRecord()
     }
 
@@ -101,6 +110,17 @@ class RecordViewModel(
     }
 
     /**
+     * Update data to database using IO Thread
+     * update function will automatically search the record
+     * with the same id
+     */
+    private suspend fun update(record: Record) {
+        withContext(Dispatchers.IO) {
+            database.update(record)
+        }
+    }
+
+    /**
      * Create Record object and add it to database
      * After all actions done, eventStart variable
      * back to the initial state
@@ -118,10 +138,34 @@ class RecordViewModel(
     }
 
     /**
-     * When start button pressed eventStart variable will changed
+     * Update record object on database
+     * syntax @launch in return@launch specifies the function
+     * from which this statement returns, among several nested functions.
+     * When we do the return inside the function,
+     * the function will automatically stop processing the next block of codes
+     */
+    fun onStopCharging(level: Int) {
+        uiScope.launch {
+            val oldRecord = currentRecord.value ?: return@launch
+            oldRecord.endTimeMilli = System.currentTimeMillis()
+            oldRecord.endBatteryLevel = level
+            update(oldRecord)
+        }
+        _eventStop.value = false
+    }
+
+    /**
+     * When start button pressed eventStart variable will be changed
      */
     fun onEventStart() {
         _eventStart.value = true
+    }
+
+    /**
+     * When stop button pressed eventStop variable will be changed
+     */
+    fun onEventStop() {
+        _eventStop.value = true
     }
 
     override fun onCleared() {

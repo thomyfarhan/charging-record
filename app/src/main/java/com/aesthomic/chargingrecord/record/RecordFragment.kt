@@ -46,6 +46,12 @@ class RecordFragment : Fragment() {
             }
         })
 
+        viewModel.eventStop.observe(this, Observer { stop ->
+            if (stop) {
+                viewModel.onStopCharging(getBatteryLevel())
+            }
+        })
+
         return binding.root
     }
 

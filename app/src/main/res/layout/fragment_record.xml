@@ -32,21 +32,22 @@
 
         </ScrollView>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_record_delete"
             style="@style/ButtonRecord.DeleteBackground"
             app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
-            app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
+            app:layout_constraintBottom_toBottomOf="@id/btn_record_stop"
+            android:src="@drawable/ic_delete"
             android:enabled="@{viewModel.deleteButtonVisibility}"
             android:onClick="@{() -> viewModel.onClear()}"
-            android:text="@string/btn_record_delete"/>
+            tools:ignore="ContentDescription" />
 
         <Button
             android:id="@+id/btn_record_stop"
             style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
-            app:layout_constraintBottom_toBottomOf="@id/guideline_record_margin_bottom"
+            app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
             android:enabled="@{viewModel.stopButtonVisibility}"
             android:onClick="@{() -> viewModel.onEventStop()}"
             android:text="@string/btn_record_stop"/>
@@ -55,7 +56,7 @@
             android:id="@+id/btn_record_start"
             style="@style/ButtonRecord.RecordBackground"
             app:layout_constraintStart_toStartOf="@+id/guideline_record_margin_start"
-            app:layout_constraintBottom_toBottomOf="@+id/guideline_record_margin_bottom"
+            app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
             android:enabled="@{viewModel.startButtonVisibility}"
             android:onClick="@{() -> viewModel.onEventStart()}"
             android:text="@string/btn_record_start"/>

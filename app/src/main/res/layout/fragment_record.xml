@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
+            android:onClick="@{() -> viewModel.onClear()}"
             android:text="@string/btn_record_delete"/>
 
         <Button

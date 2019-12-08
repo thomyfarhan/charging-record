@@ -121,6 +121,15 @@ class RecordViewModel(
     }
 
     /**
+     * Clear all rows from database
+     */
+    private suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            database.clear()
+        }
+    }
+
+    /**
      * Create Record object and add it to database
      * After all actions done, eventStart variable
      * back to the initial state
@@ -152,6 +161,17 @@ class RecordViewModel(
             update(oldRecord)
         }
         _eventStop.value = false
+    }
+
+    /**
+     * Clear all record rows from database
+     * and set currentRecord to null
+     */
+    fun onClear() {
+        uiScope.launch {
+            clear()
+            currentRecord.value = null
+        }
     }
 
     /**

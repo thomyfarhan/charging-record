@@ -13,6 +13,7 @@
     <string name="list_battery_level"><![CDATA[<b>Battery Level:</b>]]></string>
 
     <!--    Record phone heat String-->
+    <string name="tv_heat_title">How is the heat of your phone?</string>
     <string name="zero_very_hot">Very Hot</string>
     <string name="one_hot">Hot</string>
     <string name="two_so_so">So-so</string>

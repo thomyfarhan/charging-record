@@ -9,5 +9,24 @@
         android:id="@+id/record_destination"
         android:name="com.aesthomic.chargingrecord.record.RecordFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_record"/>
+        tools:layout="@layout/fragment_record">
+        <action
+            android:id="@+id/action_record_destination_to_phoneHeatFragment"
+            app:destination="@id/phone_heat_destination" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/phone_heat_destination"
+        android:name="com.aesthomic.chargingrecord.phoneheat.PhoneHeatFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_phone_heat">
+        <action
+            android:id="@+id/action_phoneHeatFragment_to_record_destination"
+            app:destination="@id/record_destination"
+            app:popUpTo="@id/record_destination"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="recordId"
+            app:argType="long" />
+    </fragment>
 </navigation>

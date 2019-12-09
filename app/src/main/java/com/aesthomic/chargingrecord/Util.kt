@@ -1,7 +1,11 @@
 package com.aesthomic.chargingrecord
 
 import android.annotation.SuppressLint
+import android.app.Application
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Resources
+import android.os.BatteryManager
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
@@ -81,4 +85,10 @@ fun convertNumericHeatToString(phoneHeat: Int, resources: Resources): String {
 fun convertLongToDateString(time: Long): String {
     return SimpleDateFormat("EEEE', 'MMM-dd-yyyy' Time: 'HH:mm")
         .format(time).toString()
+}
+
+
+fun getBatteryStatus(application: Application): Intent? {
+    val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+    return application.registerReceiver(null, ifilter)
 }

@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
+import com.aesthomic.chargingrecord.getBatteryStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -95,11 +96,9 @@ class RecordFragment : Fragment() {
         return binding.root
     }
 
-    fun getBatteryLevel(): Int {
-        val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
-        val batteryStatus = application.registerReceiver(null, ifilter)
-
-        return batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
+    private fun getBatteryLevel(): Int {
+        return getBatteryStatus(application)?.
+            getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
     }
 
 

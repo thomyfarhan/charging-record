@@ -17,8 +17,13 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val navController = this.findNavController(R.id.nav_host_fragment_main)
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.record_destination,
+                R.id.status_destination)
+            .build()
 
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         NavigationUI.setupWithNavController(binding.navBottomMain, navController)
     }

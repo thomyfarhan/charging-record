@@ -22,5 +22,7 @@
     <string name="five_very_stable">Very Stable</string>
 
     <string name="delete_snackbar">All of your records successfully deleted.</string>
+    <string name="menu_record">Record</string>
+    <string name="menu_status">Status</string>
 
 </resources>

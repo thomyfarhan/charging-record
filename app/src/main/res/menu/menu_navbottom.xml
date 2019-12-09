@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/record_destination"
+        android:icon="@drawable/ic_event_note"
+        android:title="@string/menu_record" />
+
+    <item android:id="@+id/status_destination"
+        android:icon="@drawable/ic_assignment_ind"
+        android:title="@string/menu_status" />
 </menu>

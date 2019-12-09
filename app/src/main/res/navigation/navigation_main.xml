@@ -29,4 +29,10 @@
             android:name="recordId"
             app:argType="long" />
     </fragment>
+
+    <fragment
+        android:id="@+id/status_destination"
+        android:name="com.aesthomic.chargingrecord.status.StatusFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_status"/>
 </navigation>

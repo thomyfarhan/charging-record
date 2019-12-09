@@ -30,6 +30,7 @@ class StatusFragment : Fragment() {
             .get(StatusViewModel::class.java)
 
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         return binding.root
     }

@@ -37,10 +37,11 @@
             style="@style/ButtonRecord.DeleteBackground"
             app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
-            app:layout_constraintBottom_toBottomOf="@id/btn_record_stop"
+            app:layout_constraintTop_toTopOf="@+id/btn_record_start"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_record_start"
             android:src="@drawable/ic_delete"
             android:enabled="@{viewModel.deleteButtonVisibility}"
-            android:onClick="@{() -> viewModel.onClear()}"
+            android:onClick="@{() -> viewModel.onEventClear()}"
             tools:ignore="ContentDescription" />
 
         <Button

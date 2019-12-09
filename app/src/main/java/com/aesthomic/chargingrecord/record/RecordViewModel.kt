@@ -52,6 +52,10 @@ class RecordViewModel(
     val eventStop: LiveData<Boolean>
         get() = _eventStop
 
+    private val _eventClear = MutableLiveData<Boolean>()
+    val eventClear: LiveData<Boolean>
+        get() = _eventClear
+
     private val _eventSnackBar = MutableLiveData<Boolean>()
     val eventSnackBar: LiveData<Boolean>
         get() = _eventSnackBar
@@ -195,6 +199,7 @@ class RecordViewModel(
             clear()
             currentRecord.value = null
             _eventSnackBar.value = true
+            _eventClear.value = false
         }
     }
 
@@ -210,6 +215,10 @@ class RecordViewModel(
      */
     fun onEventStop() {
         _eventStop.value = true
+    }
+
+    fun onEventClear() {
+        _eventClear.value = true
     }
 
     fun onNavigatingDone() {

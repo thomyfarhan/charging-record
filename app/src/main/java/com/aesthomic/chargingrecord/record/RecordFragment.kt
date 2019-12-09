@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 class RecordFragment : Fragment() {
@@ -54,10 +55,25 @@ class RecordFragment : Fragment() {
             }
         })
 
+        viewModel.eventClear.observe(this, Observer {
+            if (it) {
+                val dialog = MaterialAlertDialogBuilder(activity)
+                dialog.apply {
+                    setTitle("Delete All")
+                    setMessage("Are you sure?")
+                    setPositiveButton("Yes"){ _, _ ->
+                        viewModel.onClear()
+                    }
+                    setNegativeButton("No", null)
+                }
+                dialog.show()
+            }
+        })
+
         viewModel.navigateToPhoneHeat.observe(this, Observer { record ->
             record?.let {
                 if (this.findNavController().currentDestination?.id ==
-                        R.id.record_destination) {
+                    R.id.record_destination) {
                     this.findNavController().navigate(
                         RecordFragmentDirections
                             .actionRecordDestinationToPhoneHeatDestination(it.id))

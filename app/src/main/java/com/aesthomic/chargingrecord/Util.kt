@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Resources
-import android.os.BatteryManager
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
@@ -91,4 +90,9 @@ fun convertLongToDateString(time: Long): String {
 fun getBatteryStatus(application: Application): Intent? {
     val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
     return application.registerReceiver(null, ifilter)
+}
+
+fun getChargingStatus(isCharging: Boolean, resources: Resources): String {
+    return if (isCharging) resources.getString(R.string.in_charging) 
+        else resources.getString(R.string.not_charging)
 }

@@ -14,12 +14,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.aesthomic.chargingrecord.MainActivity
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
 import com.aesthomic.chargingrecord.getBatteryStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 class RecordFragment : Fragment() {
 
@@ -88,7 +90,9 @@ class RecordFragment : Fragment() {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     getString(R.string.delete_snackbar),
-                    Snackbar.LENGTH_SHORT).show()
+                    Snackbar.LENGTH_SHORT)
+                    .setAnchorView(requireActivity().nav_bottom_main)
+                    .show()
                 viewModel.onSnackbarDone()
             }
         })

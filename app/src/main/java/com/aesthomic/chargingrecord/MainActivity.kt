@@ -2,6 +2,7 @@ package com.aesthomic.chargingrecord
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,5 +27,16 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         NavigationUI.setupWithNavController(binding.navBottomMain, navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            if (destination.id in
+                arrayOf(controller.graph.startDestination, R.id.status_destination)) {
+
+                binding.navBottomMain.visibility = View.VISIBLE
+
+            } else {
+                binding.navBottomMain.visibility = View.GONE
+            }
+        }
     }
 }

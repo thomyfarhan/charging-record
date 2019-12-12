@@ -21,6 +21,14 @@ class PhoneHeatViewModel(
 
     val progressBar = MutableLiveData<Int>()
 
+    val heatNumeric = Transformations.map(progressBar) {
+        convertProgressBarToNumericHeat(it)
+    }
+
+    val heatString = Transformations.map(heatNumeric) {
+        convertNumericHeatToString(it, application.resources)
+    }
+
     init {
         progressBar.value = 50
     }

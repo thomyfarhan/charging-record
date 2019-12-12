@@ -62,6 +62,7 @@ class PhoneHeatFragment : Fragment() {
     }
 
     private fun initSeekBar() {
+        binding.verticalsbHeat.maxValue = 90
         binding.verticalsbHeat.progress = viewModel.progressBar.value ?: 0
     }
 

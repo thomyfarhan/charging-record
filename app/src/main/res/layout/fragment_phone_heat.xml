@@ -32,8 +32,8 @@
             app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
             app:layout_constraintBottom_toTopOf="@+id/verticalsb_heat"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(0)}"
-            android:text="@string/zero_very_hot"/>
+            android:onClick="@{() -> viewModel.onSetPhoneHeat(viewModel.heatNumeric)}"
+            android:text="@{viewModel.heatString}"/>
 
         <com.lukelorusso.verticalseekbar.VerticalSeekBar
             android:id="@+id/verticalsb_heat"
@@ -43,8 +43,8 @@
             app:vsb_bar_corner_radius="26dp"
             app:vsb_bar_width="60dp"
             app:vsb_bar_progress="@android:color/transparent"
-            app:vsb_bar_background_gradient_end="@color/progress_gradient_end"
-            app:vsb_bar_background_gradient_start="@color/delete_primary_dark"
+            app:vsb_bar_background_gradient_end="@color/delete_primary_dark"
+            app:vsb_bar_background_gradient_start="@color/progress_gradient_end"
             app:vsb_show_thumb="true"
             app:vsb_thumb_container_corner_radius="5dp"
             app:vsb_thumb_container_tint="@color/placeholder_background"

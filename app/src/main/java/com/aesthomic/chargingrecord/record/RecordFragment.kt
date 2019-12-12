@@ -41,6 +41,9 @@ class RecordFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        /**
+         * Added dialog to make sure the user choose the right action
+         */
         viewModel.eventClear.observe(this, Observer {
             if (it) {
                 val dialog = MaterialAlertDialogBuilder(activity)
@@ -56,6 +59,11 @@ class RecordFragment : Fragment() {
             }
         })
 
+        /**
+         * Some condition added on this state to prevent some
+         * navigation error by such actions like
+         * two button pressed at the same time
+         */
         viewModel.navigateToPhoneHeat.observe(this, Observer { record ->
             record?.let {
                 if (this.findNavController().currentDestination?.id ==
@@ -68,6 +76,11 @@ class RecordFragment : Fragment() {
             }
         })
 
+        /**
+         * setAnchorView function on Snackbar is to determine the exact
+         * position of Snackbar
+         * in this state the snackbar will be placed above the NavBottom
+         */
         viewModel.eventSnackBar.observe(this, Observer {
             if (it) {
                 Snackbar.make(

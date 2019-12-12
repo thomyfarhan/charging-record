@@ -20,6 +20,11 @@ class RecordViewModel(
     val database: RecordDao,
     application: Application) : AndroidViewModel(application) {
 
+    /**
+     * Enabling to use application inside function in this ViewModel
+     * this technique may not be the best practice, and i still yet to know
+     * the proper technique to place the application
+     */
     private val app = application
 
     /**
@@ -40,18 +45,24 @@ class RecordViewModel(
     private var currentRecord = MutableLiveData<Record>()
 
     /**
-     * This variable gives a state whether the stop button
+     * This variable gives a state whether the clear button
      * has been pressed or not
      */
-
     private val _eventClear = MutableLiveData<Boolean>()
     val eventClear: LiveData<Boolean>
         get() = _eventClear
 
+    /**
+     * Guide for the view whether the snackbar will be performed or not
+     */
     private val _eventSnackBar = MutableLiveData<Boolean>()
     val eventSnackBar: LiveData<Boolean>
         get() = _eventSnackBar
 
+    /**
+     * A place for determine the state to navigate
+     * to Phone Heat Fragment
+     */
     private val _navigateToPhoneHeat = MutableLiveData<Record?>()
     val navigateToPhoneHeat: LiveData<Record?>
         get() = _navigateToPhoneHeat
@@ -71,20 +82,29 @@ class RecordViewModel(
         formatRecords(records, app.resources)
     }
 
+    /**
+     * Enable the Start Button if currentRecord is null
+     */
     val startButtonVisibility = Transformations.map(currentRecord) {
         it == null
     }
 
+    /**
+     * Enable the Stop Button if currentRecord has data
+     */
     val stopButtonVisibility = Transformations.map(currentRecord) {
         it != null
     }
 
+    /**
+     * Disable the Delete Button if the records don't have
+     * any data or row
+     */
     val deleteButtonVisibility = Transformations.map(records) {
         it.isNotEmpty()
     }
 
     init {
-        _navigateToPhoneHeat.value = null
         initializeCurrentRecord()
     }
 

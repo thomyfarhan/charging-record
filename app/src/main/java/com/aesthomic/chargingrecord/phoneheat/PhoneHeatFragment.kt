@@ -18,6 +18,7 @@ import com.aesthomic.chargingrecord.databinding.FragmentPhoneHeatBinding
 class PhoneHeatFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneHeatBinding
+    private lateinit var viewModel: PhoneHeatViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +32,13 @@ class PhoneHeatFragment : Fragment() {
         val database = ChargingRecordDatabase.getInstance(application).recordDao
 
         val viewModelFactory = PhoneHeatViewModelFactory(arguments.recordId, database)
-        val viewModel = ViewModelProviders.of(
+        viewModel = ViewModelProviders.of(
             this, viewModelFactory).get(PhoneHeatViewModel::class.java)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        initSeekBar()
 
         viewModel.navigateToRecord.observe(this, Observer { navigate ->
             if (navigate) {
@@ -49,7 +52,15 @@ class PhoneHeatFragment : Fragment() {
             }
         })
 
+        binding.verticalsbHeat.setOnProgressChangeListener {
+            viewModel.progressBar.value = it
+        }
+
         return binding.root
+    }
+
+    private fun initSeekBar() {
+        binding.verticalsbHeat.progress = viewModel.progressBar.value ?: 0
     }
 
 

@@ -17,8 +17,10 @@ class PhoneHeatViewModel(
     val navigateToRecord: LiveData<Boolean>
         get() = _navigateToRecord
 
+    val progressBar = MutableLiveData<Int>()
+
     init {
-        _navigateToRecord.value = false
+        progressBar.value = 50
     }
 
     fun onSetPhoneHeat(heat: Int) {

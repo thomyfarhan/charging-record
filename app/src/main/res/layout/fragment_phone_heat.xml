@@ -45,7 +45,6 @@
             app:vsb_bar_progress="@android:color/transparent"
             app:vsb_bar_background_gradient_end="@color/progress_gradient_end"
             app:vsb_bar_background_gradient_start="@color/delete_primary_dark"
-            app:vsb_progress="50"
             app:vsb_show_thumb="true"
             app:vsb_thumb_container_corner_radius="5dp"
             app:vsb_thumb_container_tint="@color/placeholder_background"

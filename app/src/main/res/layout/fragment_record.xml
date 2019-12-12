@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
             app:layout_constraintTop_toTopOf="@id/guideline_record_margin_top"
             android:enabled="@{viewModel.stopButtonVisibility}"
-            android:onClick="@{() -> viewModel.onEventStop()}"
+            android:onClick="@{() -> viewModel.onStopCharging()}"
             android:text="@string/btn_record_stop"/>
 
         <Button

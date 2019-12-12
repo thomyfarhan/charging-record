@@ -48,9 +48,6 @@ class RecordViewModel(
      * This variable gives a state whether the stop button
      * has been pressed or not
      */
-    private val _eventStop = MutableLiveData<Boolean>()
-    val eventStop: LiveData<Boolean>
-        get() = _eventStop
 
     private val _eventClear = MutableLiveData<Boolean>()
     val eventClear: LiveData<Boolean>
@@ -93,7 +90,6 @@ class RecordViewModel(
 
     init {
         _eventStart.value = false
-        _eventStop.value = false
         _navigateToPhoneHeat.value = null
         initializeCurrentRecord()
     }
@@ -135,17 +131,6 @@ class RecordViewModel(
     }
 
     /**
-     * Update data to database using IO Thread
-     * update function will automatically search the record
-     * with the same id
-     */
-    private suspend fun update(record: Record) {
-        withContext(Dispatchers.IO) {
-            database.update(record)
-        }
-    }
-
-    /**
      * Clear all rows from database
      */
     private suspend fun clear() {
@@ -171,23 +156,8 @@ class RecordViewModel(
         _eventStart.value = false
     }
 
-    /**
-     * Update record object on database
-     * syntax @launch in return@launch specifies the function
-     * from which this statement returns, among several nested functions.
-     * When we do the return inside the function,
-     * the function will automatically stop processing the next block of codes
-     */
-    fun onStopCharging(level: Int) {
-        uiScope.launch {
-            val oldRecord = currentRecord.value ?: return@launch
-            oldRecord.endTimeMilli = System.currentTimeMillis()
-            oldRecord.endBatteryLevel = level
-            update(oldRecord)
-
-            _eventStop.value = false
-            _navigateToPhoneHeat.value = oldRecord
-        }
+    fun onStopCharging() {
+        _navigateToPhoneHeat.value = currentRecord.value ?: return
     }
 
     /**
@@ -208,13 +178,6 @@ class RecordViewModel(
      */
     fun onEventStart() {
         _eventStart.value = true
-    }
-
-    /**
-     * When stop button pressed eventStop variable will be changed
-     */
-    fun onEventStop() {
-        _eventStop.value = true
     }
 
     fun onEventClear() {

@@ -52,12 +52,6 @@ class RecordFragment : Fragment() {
             }
         })
 
-        viewModel.eventStop.observe(this, Observer { stop ->
-            if (stop) {
-                viewModel.onStopCharging(getBatteryLevel())
-            }
-        })
-
         viewModel.eventClear.observe(this, Observer {
             if (it) {
                 val dialog = MaterialAlertDialogBuilder(activity)

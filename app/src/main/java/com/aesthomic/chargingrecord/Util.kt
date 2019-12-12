@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Resources
+import android.os.BatteryManager
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
@@ -107,4 +108,9 @@ fun convertProgressBarToNumericHeat(value: Int): Int {
         in 76..90 -> 5
         else -> -1
     }
+}
+
+fun getBatteryLevel(application: Application): Int {
+    return getBatteryStatus(application)?.
+        getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
 }

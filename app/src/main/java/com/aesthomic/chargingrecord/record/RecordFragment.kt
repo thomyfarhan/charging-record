@@ -2,9 +2,6 @@ package com.aesthomic.chargingrecord.record
 
 
 import android.app.Application
-import android.content.Intent
-import android.content.IntentFilter
-import android.os.BatteryManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,11 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.aesthomic.chargingrecord.MainActivity
 import com.aesthomic.chargingrecord.R
 import com.aesthomic.chargingrecord.database.ChargingRecordDatabase
 import com.aesthomic.chargingrecord.databinding.FragmentRecordBinding
-import com.aesthomic.chargingrecord.getBatteryStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,12 +40,6 @@ class RecordFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-        viewModel.eventStart.observe(this, Observer { start ->
-            if (start) {
-                viewModel.onStartCharging(getBatteryLevel())
-            }
-        })
 
         viewModel.eventClear.observe(this, Observer {
             if (it) {
@@ -92,11 +81,6 @@ class RecordFragment : Fragment() {
         })
 
         return binding.root
-    }
-
-    private fun getBatteryLevel(): Int {
-        return getBatteryStatus(application)?.
-            getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
     }
 
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations
 import com.aesthomic.chargingrecord.database.Record
 import com.aesthomic.chargingrecord.database.RecordDao
 import com.aesthomic.chargingrecord.formatRecords
+import com.aesthomic.chargingrecord.getBatteryLevel
 import kotlinx.coroutines.*
 
 /**
@@ -18,6 +19,8 @@ import kotlinx.coroutines.*
 class RecordViewModel(
     val database: RecordDao,
     application: Application) : AndroidViewModel(application) {
+
+    private val app = application
 
     /**
      * This variable allows to cancel all coroutines started by this view model
@@ -35,14 +38,6 @@ class RecordViewModel(
      * Holds current Record data that has already been added
      */
     private var currentRecord = MutableLiveData<Record>()
-
-    /**
-     * This variable gives a state whether the start button
-     * has been pressed or not
-     */
-    private val _eventStart = MutableLiveData<Boolean>()
-    val eventStart: LiveData<Boolean>
-        get() = _eventStart
 
     /**
      * This variable gives a state whether the stop button
@@ -73,7 +68,7 @@ class RecordViewModel(
      * using Transformation.map
      */
     val recordsString = Transformations.map(records) { records ->
-        formatRecords(records, application.resources)
+        formatRecords(records, app.resources)
     }
 
     val startButtonVisibility = Transformations.map(currentRecord) {
@@ -89,7 +84,6 @@ class RecordViewModel(
     }
 
     init {
-        _eventStart.value = false
         _navigateToPhoneHeat.value = null
         initializeCurrentRecord()
     }
@@ -144,8 +138,9 @@ class RecordViewModel(
      * After all actions done, eventStart variable
      * back to the initial state
      */
-    fun onStartCharging(level: Int) {
+    fun onStartCharging() {
         uiScope.launch {
+            val level = getBatteryLevel(app)
             val record = Record(
                 startTimeMilli = System.currentTimeMillis(),
                 startBatteryLevel = level
@@ -153,7 +148,6 @@ class RecordViewModel(
             insert(record)
             currentRecord.value = getRecordFromDatabase()
         }
-        _eventStart.value = false
     }
 
     fun onStopCharging() {
@@ -171,13 +165,6 @@ class RecordViewModel(
             _eventSnackBar.value = true
             _eventClear.value = false
         }
-    }
-
-    /**
-     * When start button pressed eventStart variable will be changed
-     */
-    fun onEventStart() {
-        _eventStart.value = true
     }
 
     fun onEventClear() {

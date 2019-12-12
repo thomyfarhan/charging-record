@@ -96,3 +96,15 @@ fun getChargingStatus(isCharging: Boolean, resources: Resources): String {
     return if (isCharging) resources.getString(R.string.in_charging) 
         else resources.getString(R.string.not_charging)
 }
+
+fun convertProgressBarToNumericHeat(value: Int): Int {
+    return when(value) {
+        in 0..15 -> 0
+        in 16..30 -> 1
+        in 31..45 -> 2
+        in 46..60 -> 3
+        in 61..75 -> 4
+        in 76..90 -> 5
+        else -> -1
+    }
+}

@@ -1,14 +1,16 @@
 package com.aesthomic.chargingrecord.phoneheat
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.aesthomic.chargingrecord.convertNumericHeatToString
+import com.aesthomic.chargingrecord.convertProgressBarToNumericHeat
 import com.aesthomic.chargingrecord.database.RecordDao
 import kotlinx.coroutines.*
 
 class PhoneHeatViewModel(
     private val recordId: Long,
-    private val database: RecordDao) : ViewModel() {
+    private val database: RecordDao,
+    application: Application) : AndroidViewModel(application) {
 
     val viewModelJob = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

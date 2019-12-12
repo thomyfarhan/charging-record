@@ -31,7 +31,9 @@ class PhoneHeatFragment : Fragment() {
         val arguments = PhoneHeatFragmentArgs.fromBundle(arguments!!)
         val database = ChargingRecordDatabase.getInstance(application).recordDao
 
-        val viewModelFactory = PhoneHeatViewModelFactory(arguments.recordId, database)
+        val viewModelFactory = PhoneHeatViewModelFactory(
+            arguments.recordId, database, application)
+
         viewModel = ViewModelProviders.of(
             this, viewModelFactory).get(PhoneHeatViewModel::class.java)
 

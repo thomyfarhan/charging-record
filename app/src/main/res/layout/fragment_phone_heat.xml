@@ -26,59 +26,35 @@
             android:text="@string/tv_heat_title"/>
 
         <Button
-            android:id="@+id/btn_heat_zero"
+            android:id="@+id/btn_heat"
             style="@style/ButtonHeat"
-            android:layout_marginTop="@dimen/fragment_vertical_margin"
-            app:layout_constraintTop_toBottomOf="@+id/tv_heat_title"
+            android:layout_marginBottom="@dimen/fragment_half_vertical_margin"
             app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
             app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
+            app:layout_constraintBottom_toTopOf="@+id/verticalsb_heat"
             android:onClick="@{() -> viewModel.onSetPhoneHeat(0)}"
             android:text="@string/zero_very_hot"/>
 
-        <Button
-            android:id="@+id/btn_heat_one"
-            style="@style/ButtonHeat"
-            app:layout_constraintTop_toBottomOf="@+id/btn_heat_zero"
-            app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(1)}"
-            android:text="@string/one_hot"/>
-
-        <Button
-            android:id="@+id/btn_heat_two"
-            style="@style/ButtonHeat"
-            app:layout_constraintTop_toBottomOf="@+id/btn_heat_one"
-            app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(2)}"
-            android:text="@string/two_so_so"/>
-
-        <Button
-            android:id="@+id/btn_heat_three"
-            style="@style/ButtonHeat"
-            app:layout_constraintTop_toBottomOf="@+id/btn_heat_two"
-            app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(3)}"
-            android:text="@string/three_ok"/>
-
-        <Button
-            android:id="@+id/btn_heat_four"
-            style="@style/ButtonHeat"
-            app:layout_constraintTop_toBottomOf="@+id/btn_heat_three"
-            app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(4)}"
-            android:text="@string/four_stable"/>
-
-        <Button
-            android:id="@+id/btn_heat_five"
-            style="@style/ButtonHeat"
-            app:layout_constraintTop_toBottomOf="@+id/btn_heat_four"
-            app:layout_constraintStart_toStartOf="@id/guideline_heat_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_heat_margin_end"
-            android:onClick="@{() -> viewModel.onSetPhoneHeat(5)}"
-            android:text="@string/five_very_stable"/>
+        <com.lukelorusso.verticalseekbar.VerticalSeekBar
+            android:id="@+id/verticalsb_heat"
+            android:layout_width="60dp"
+            android:layout_height="280dp"
+            app:vsb_click_to_set_progress="false"
+            app:vsb_bar_corner_radius="26dp"
+            app:vsb_bar_width="60dp"
+            app:vsb_bar_progress="@android:color/transparent"
+            app:vsb_bar_background_gradient_end="@color/progress_gradient_end"
+            app:vsb_bar_background_gradient_start="@color/delete_primary_dark"
+            app:vsb_progress="50"
+            app:vsb_show_thumb="true"
+            app:vsb_thumb_container_corner_radius="5dp"
+            app:vsb_thumb_container_tint="@color/placeholder_background"
+            app:vsb_thumb_placeholder_src="@drawable/thumb_placeholder"
+            app:vsb_use_thumb_to_set_progress="true"
+            app:layout_constraintStart_toStartOf="@id/btn_heat"
+            app:layout_constraintEnd_toEndOf="@id/btn_heat"
+            app:layout_constraintTop_toBottomOf="@+id/tv_heat_title"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_heat_margin_top"

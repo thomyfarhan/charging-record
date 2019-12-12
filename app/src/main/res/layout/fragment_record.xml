@@ -16,15 +16,18 @@
 
         <ScrollView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/guideline_record_margin_start"
-            app:layout_constraintEnd_toEndOf="@id/guideline_record_margin_end"
-            app:layout_constraintTop_toBottomOf="@id/btn_record_delete"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/fragment_vertical_margin"
-            android:layout_marginBottom="@dimen/fragment_vertical_margin">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_record_delete"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tv_record_text"
+                android:paddingStart="@dimen/fragment_horizontal_margin"
+                android:paddingEnd="@dimen/fragment_horizontal_margin"
+                android:paddingBottom="@dimen/fragment_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.recordsString}"

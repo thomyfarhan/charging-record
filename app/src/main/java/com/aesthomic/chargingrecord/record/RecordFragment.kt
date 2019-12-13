@@ -56,6 +56,7 @@ class RecordFragment : Fragment() {
                     setNegativeButton("No", null)
                 }
                 dialog.show()
+                viewModel.onClearDone()
             }
         })
 

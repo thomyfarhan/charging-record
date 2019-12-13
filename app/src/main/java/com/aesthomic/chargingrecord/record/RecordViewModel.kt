@@ -183,12 +183,15 @@ class RecordViewModel(
             clear()
             currentRecord.value = null
             _eventSnackBar.value = true
-            _eventClear.value = false
         }
     }
 
     fun onEventClear() {
         _eventClear.value = true
+    }
+
+    fun onClearDone() {
+        _eventClear.value = false
     }
 
     fun onNavigatingDone() {
